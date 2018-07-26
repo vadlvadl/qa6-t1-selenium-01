@@ -22,11 +22,29 @@ public class JiraTestNewIssue {
         // Run browser and get needed address
         driver.get("http://jira.hillel.it:8080/");
 
-        // login
+        LoginPage loginPage = new LoginPage(driver);
 
-        // click Create Issue button
+        loginPage.enterLogin("webinar5");
+        loginPage.enterPassword("webinar5");
+        loginPage.clickSubmit();
 
-        // fill the entries and press Create
+
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        dashboardPage.clickCreateIssueButton();
+
+        IssuePage issuePage = new IssuePage(driver);
+
+        issuePage.enterSummary("[Test Automation] QAAUTO6-T1_test01");
+        issuePage.enterDescription("Testing issue created according to http://jira.hillel.it:8080/browse/QAAUT6-1 task");
+        issuePage.clickAssignToMe();
+        issuePage.clickCreateButton();
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         driver.close();
     }
