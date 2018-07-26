@@ -4,9 +4,9 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage {
 
     WebDriver driver;
-    String username = "//*[@id=\"login-form-username\"]"; // need to verify this ID
-    String passwordInputID = "//*[@id=\"login-form-password\"]"; // need to verify this ID
-    String loginButtonID = "//*[@id=\"login-form-submit\"]"; // need to verify this ID
+    String username = "login-form-username";
+    String passwordInputID = "login-form-password";
+    String loginButtonID = "login-form-submit";
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
