@@ -30,17 +30,29 @@ public class JiraTestNewIssue {
 
 
         DashboardPage dashboardPage = new DashboardPage(driver);
+        // Add methods to wait until page is loaded
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         dashboardPage.clickCreateIssueButton();
 
         IssuePage issuePage = new IssuePage(driver);
 
+
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         issuePage.enterSummary("[Test Automation] QAAUTO6-T1_test01");
         issuePage.enterDescription("Testing issue created according to http://jira.hillel.it:8080/browse/QAAUT6-1 task");
         issuePage.clickAssignToMe();
         issuePage.clickCreateButton();
 
         try {
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
