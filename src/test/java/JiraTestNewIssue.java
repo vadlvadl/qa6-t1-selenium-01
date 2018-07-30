@@ -2,6 +2,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
+import pages.DashboardPage;
+import pages.IssuePage;
+import pages.LoginPage;
 
 import java.net.MalformedURLException;
 import java.net.URL;
