@@ -1,20 +1,21 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
 
 public class DashboardPage {
 
-    private WebDriver driver;
-    private String createNewIssueButtonXpath = "//*[@id=\"create_link\"]";
+       private String createNewIssueButtonXpath = "//*[@id=\"create_link\"]";
 
-    public DashboardPage(WebDriver driver){
-        this.driver = driver;
+       public  void clickCreateIssueButton() {
+        $(byXpath(createNewIssueButtonXpath)).click();
+    }
+       public  void clickIssueButton() {
+        $(byXpath("//*[@id=\"find_link\"] ")).click();
+    }
+       public  void clickCurrentSearchButton() {
+        $(byXpath("  //*[@id=\"jira.top.navigation.bar:issues_drop_current_lnk\"] ")).click();
     }
 
-
-    public  void clickCreateIssueButton() {
-        driver.findElement(By.xpath(createNewIssueButtonXpath)).click();
-    }
 
 }
