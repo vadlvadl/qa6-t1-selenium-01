@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class IssuePage {
+
     private String inputSummaryXpath = "//*[@id=\"summary\"]";
     private String inputDescriptionID = "tinymce";
     private String assignToMeButtonXpath = "//*[@id=\"assign-to-me-trigger\"]";
@@ -17,6 +18,7 @@ public class IssuePage {
         $(byXpath(inputSummaryXpath)).sendKeys(summary);
 
     }
+
     // Это отняло у меня 3 часа моей жизни...
     public  void enterDescription(String description){
         Selenide.switchTo().frame($(byXpath(frameXpath)));
@@ -27,6 +29,7 @@ public class IssuePage {
     public void clickAssignToMe(){
         $(byXpath(assignToMeButtonXpath)).click();
     }
+
     public void clickCreateButton(){
         $(byXpath(createButtonXpath)).click();
     }
