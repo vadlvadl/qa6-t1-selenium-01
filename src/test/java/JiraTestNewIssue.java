@@ -32,7 +32,7 @@ public class JiraTestNewIssue {
         loginPage.clickSubmit();
 
 
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        DashboardPage dashboardPage = new DashboardPage();
         // Add methods to wait until page is loaded
         try {
             Thread.sleep(1000);
