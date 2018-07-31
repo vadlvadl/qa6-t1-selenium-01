@@ -13,10 +13,12 @@ public class LoginPage {
     String loginButtonID = "login"; // Entry point "http://jira.hillel.it:8080/secure/Dashboard.jspa"
 
     public void enterLogin(String username) {
+        $(By.id(this.username)).clear();
         $(By.id(this.username)).sendKeys(username);
     }
 
     public void enterPassword(String password) {
+        $(By.id(passwordInputID)).clear();
         $(By.id(passwordInputID)).sendKeys(password);
     }
 
