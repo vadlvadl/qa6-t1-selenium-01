@@ -1,41 +1,38 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import com.codeborne.selenide.Selenide;
+
+import static com.codeborne.selenide.Selectors.byId;
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
 
 public class IssuePage {
-    private WebDriver driver;
-    public IssuePage(WebDriver driver){
-        this.driver = driver;
-    }
 
     private String inputSummaryXpath = "//*[@id=\"summary\"]";
     private String inputDescriptionID = "tinymce";
     private String assignToMeButtonXpath = "//*[@id=\"assign-to-me-trigger\"]";
     private String createButtonXpath = "//*[@id=\"create-issue-submit\"]";
-
+    private String frameXpath = "//*/div[@class=\"mce-edit-area mce-container mce-panel mce-stack-layout-item mce-first\"]/iframe ";
 
     public  void enterSummary(String summary){
-        driver.findElement(By.xpath(inputSummaryXpath)).sendKeys(summary);
+        $(byXpath(inputSummaryXpath)).sendKeys(summary);
 
     }
+
     // Это отняло у меня 3 часа моей жизни...
     public  void enterDescription(String description){
-        driver.switchTo().frame(driver.findElement(By.id("mce_0_ifr")));
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(inputDescriptionID)));
-        driver.findElement(By.id(inputDescriptionID)).sendKeys(description);
-        driver.switchTo().defaultContent();
-
+        Selenide.switchTo().frame($(byXpath(frameXpath)));
+        $(byId(inputDescriptionID)).sendKeys(description);
+        Selenide.switchTo().defaultContent();
     }
 
     public void clickAssignToMe(){
-        driver.findElement(By.xpath(assignToMeButtonXpath)).click();
+        $(byXpath(assignToMeButtonXpath)).click();
     }
+
     public void clickCreateButton(){
-        driver.findElement(By.xpath(createButtonXpath)).click();
+        $(byXpath(createButtonXpath)).click();
     }
+
 
 }
