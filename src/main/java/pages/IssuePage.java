@@ -1,38 +1,29 @@
 package pages;
 
-import com.codeborne.selenide.Selenide;
-
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class IssuePage {
 
-    private String inputSummaryXpath = "//*[@id=\"summary\"]";
-    private String inputDescriptionID = "tinymce";
-    private String assignToMeButtonXpath = "//*[@id=\"assign-to-me-trigger\"]";
-    private String createButtonXpath = "//*[@id=\"create-issue-submit\"]";
-    private String frameXpath = "//*/div[@class=\"mce-edit-area mce-container mce-panel mce-stack-layout-item mce-first\"]/iframe ";
+    String commentButtonID = "footer-comment-button";
+    String textTabButtonID = "aui-uid-1";
+    String commentTextAreaXPath = "//*[@id=\"comment-wiki-edit\"]/textarea";
+    String addCommentSubmitButtonID = "issue-comment-add-submit";
 
-    public  void enterSummary(String summary){
-        $(byXpath(inputSummaryXpath)).sendKeys(summary);
-
+    public void clickAddCommentButton(){
+        $(byId(commentButtonID)).click();
     }
 
-    // Это отняло у меня 3 часа моей жизни...
-    public  void enterDescription(String description){
-        Selenide.switchTo().frame($(byXpath(frameXpath)));
-        $(byId(inputDescriptionID)).sendKeys(description);
-        Selenide.switchTo().defaultContent();
+    public void clickTextareaTabButton(){
+        $(byId(textTabButtonID)).click();
     }
 
-    public void clickAssignToMe(){
-        $(byXpath(assignToMeButtonXpath)).click();
+    public void enterTextToTextarea(String text){
+        $(byXpath(commentTextAreaXPath)).sendKeys(text);
     }
 
-    public void clickCreateButton(){
-        $(byXpath(createButtonXpath)).click();
+    public void clickSubmitCommentButton(){
+        $(byId(addCommentSubmitButtonID)).click();
     }
-
-
 }

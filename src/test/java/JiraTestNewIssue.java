@@ -2,7 +2,7 @@ import com.codeborne.selenide.Configuration;
 
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import pages.IssuePage;
+import pages.IssueDialogPage;
 import pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -28,12 +28,12 @@ public class JiraTestNewIssue {
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.clickCreateIssueButton();
 
-        IssuePage issuePage = new IssuePage();
+        IssueDialogPage issueDialogPage = new IssueDialogPage();
 
-        issuePage.enterSummary("[Test Automation] QAAUTO6-T1_test02");
-        issuePage.enterDescription("Testing issue created according to http://jira.hillel.it:8080/browse/QAAUT6-1 task");
-        issuePage.clickAssignToMe();
-        issuePage.clickCreateButton();
+        issueDialogPage.enterSummary("[Test Automation] QAAUTO6-T1_test02");
+        issueDialogPage.enterDescription("Testing issue created according to http://jira.hillel.it:8080/browse/QAAUT6-1 task");
+        issueDialogPage.clickAssignToMe();
+        issueDialogPage.clickCreateButton();
 
         try {
             Thread.sleep(5000);
