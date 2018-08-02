@@ -10,6 +10,8 @@ public class IssuePage {
     String textTabButtonID = "aui-uid-1";
     String commentTextAreaXPath = "//*[@id=\"comment-wiki-edit\"]/textarea";
     String addCommentSubmitButtonID = "issue-comment-add-submit";
+    String issueActionsContainerID = "issue_actions_container";
+    String issueActionsTextXPath = "//*[@id=\"issue_actions_container\"]/div/div[@class=\"action_body\"][last()]";
 
     public void clickAddCommentButton(){
         $(byId(commentButtonID)).click();
@@ -25,5 +27,9 @@ public class IssuePage {
 
     public void clickSubmitCommentButton(){
         $(byId(addCommentSubmitButtonID)).click();
+    }
+
+    public void getLastComment(){
+
     }
 }
