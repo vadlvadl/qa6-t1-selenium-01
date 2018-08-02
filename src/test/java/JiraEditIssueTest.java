@@ -18,19 +18,19 @@ public class JiraEditIssueTest {
 
         String rootPath = System.getProperty("user.dir");
 
-        PropertyReader pr1 = new PropertyReader(rootPath + "/jira.properties");
+        PropertyReader appConfig = new PropertyReader(rootPath + "/jira.properties");
         PropertyReader credentials = new PropertyReader(rootPath + "/credentials.properties");
 
-        Configuration.remote = pr1.getStringValue("configurationRemote");
-        Configuration.browser = pr1.getStringValue("configurationBrowser");
-        Configuration.timeout = pr1.getIntValue("configurationTimeout");
+        Configuration.remote = appConfig.getStringValue("configurationRemote");
+        Configuration.browser = appConfig.getStringValue("configurationBrowser");
+        Configuration.timeout = appConfig.getIntValue("configurationTimeout");
 
         Random random = new Random();
         int salt = random.nextInt() + 1;
 
         String comment = "Comment added by autotest";
-        String loginURL = pr1.getStringValue("jiraURL");
-        String issueURL = pr1.getStringValue("jiraIssueURL");
+        String loginURL = appConfig.getStringValue("jiraURL");
+        String issueURL = appConfig.getStringValue("jiraIssueURL");
 
         // Add some ID to comment text
         comment = "[" + salt + "]" + comment;
@@ -39,8 +39,8 @@ public class JiraEditIssueTest {
 
         LoginPage loginPage = new LoginPage();
 
-        loginPage.enterLogin(credentials.getStringValue("jiraLogin"));
-        loginPage.enterPassword(credentials.getStringValue("jiraPassword"));
+        loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
+        loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
         loginPage.clickSubmit();
 
         DashboardPage dashboardPage = new DashboardPage();

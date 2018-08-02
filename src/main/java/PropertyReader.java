@@ -44,8 +44,16 @@ public class PropertyReader {
         return prop.getProperty(key);
     }
 
+    public String getStringValue(String key, String defaultValue) {
+        return prop.getProperty(key, defaultValue);
+    }
+
     public Integer getIntValue(String key) {
         return Integer.parseInt(prop.getProperty(key));
+    }
+
+    public Integer getIntValue(String key, Integer defaultValue) {
+        return Integer.parseInt(prop.getProperty(key, defaultValue.toString()));
     }
 
 }
