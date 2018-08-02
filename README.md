@@ -16,6 +16,11 @@ https://www.seleniumhq.org/download/
 java -jar selenium-server-standalone-3.13.0.jar -role hub
 java -jar selenium-server-standalone-3.13.0.jar -role node
 ```
+
+Make sure you have credentials.properties file in root folder of your project with content
+```jiraLogin=...
+   jiraPassword=...```
+
 * Run test
 ```mvn clean test```
 *

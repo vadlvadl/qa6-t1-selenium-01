@@ -16,8 +16,10 @@ public class JiraEditIssueTest {
     @Test
     public void AddCommentTest(){
 
-        PropertyReader pr1 = new PropertyReader("/home/vadim/IdeaProjects/qa6-t1-selenium-01/jira.properties");
-        PropertyReader credentials = new PropertyReader("/home/vadim/IdeaProjects/qa6-t1-selenium-01/credentials.properties");
+        String rootPath = System.getProperty("user.dir");
+
+        PropertyReader pr1 = new PropertyReader(rootPath + "/jira.properties");
+        PropertyReader credentials = new PropertyReader(rootPath + "/credentials.properties");
 
         Configuration.remote = pr1.getStringValue("configurationRemote");
         Configuration.browser = pr1.getStringValue("configurationBrowser");
