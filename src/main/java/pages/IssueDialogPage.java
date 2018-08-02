@@ -12,7 +12,7 @@ public class IssueDialogPage {
     private String inputDescriptionID = "tinymce";
     private String assignToMeButtonXpath = "//*[@id=\"assign-to-me-trigger\"]";
     private String createButtonXpath = "//*[@id=\"create-issue-submit\"]";
-    private String frameXpath = "//*/div[@class=\"mce-edit-area mce-container mce-panel mce-stack-layout-item mce-first\"]/iframe ";
+    private String frameXpath = "//*/div[@class=\"mce-edit-area mce-container mce-panel mce-stack-layout-item mce-first\"]/iframe";
 
     public  void enterSummary(String summary){
         $(byXpath(inputSummaryXpath)).sendKeys(summary);
