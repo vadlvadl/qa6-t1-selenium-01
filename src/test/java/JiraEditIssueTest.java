@@ -57,4 +57,19 @@ public class JiraEditIssueTest {
         issuePage.checkLastCommentText(comment);
 
     }
+
+    @Test
+    public void changeIssuePriorityTest(){
+
+        String rootPath = System.getProperty("user.dir");
+
+        PropertyReader appConfig = new PropertyReader(rootPath + "/jira.properties");
+        PropertyReader credentials = new PropertyReader(rootPath + "/credentials.properties");
+
+        Configuration.remote = appConfig.getStringValue("configurationRemote");
+        Configuration.browser = appConfig.getStringValue("configurationBrowser");
+        Configuration.timeout = appConfig.getIntValue("configurationTimeout");
+
+        String requiredIssuePriority = "critical";
+    }
 }
