@@ -10,7 +10,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <allure.version>1.4.23.HOTFIX1</allure.version>
+        <selenium.version>3.11.0</selenium.version>
+        <selenide.version>4.12.3</selenide.version>
+        <allure.version>2.7.0</allure.version>
         <aspectj.version>1.8.10</aspectj.version>
         <compiler.version>1.7</compiler.version>
     </properties>
@@ -24,9 +26,8 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
-                    <fork>true</fork>
-                    <executable>C:\Program Files\Java\jdk-10.0.1\bin\javac.exe</executable>
                 </configuration>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -61,12 +62,12 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.45.0</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>3.5.1</version>
+            <version>${selenide.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
         <dependency>
@@ -78,7 +79,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.7.0</version>
+            <version>${allure.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
         <dependency>
@@ -86,7 +87,6 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.1</version>
         </dependency>
-
 
     </dependencies>
 

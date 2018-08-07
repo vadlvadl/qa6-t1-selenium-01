@@ -27,7 +27,7 @@ public class DashboardPage {
     }
 
     public void isLoggedIn(){
-        $(byId(headerAccountDetail)).waitUntil(Condition.visible,5000);
+        $(byId(headerAccountDetail)).waitUntil(Condition.visible,10000);
     }
 
 

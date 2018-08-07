@@ -68,18 +68,30 @@ public class JiraEditIssueTest {
 
     }
 
-//    @Test
-//    public void changeIssuePriorityTest(){
-//
-//        String rootPath = System.getProperty("user.dir");
-//
-//        PropertyReader appConfig = new PropertyReader(rootPath + "/jira.properties");
-//        PropertyReader credentials = new PropertyReader(rootPath + "/credentials.properties");
-//
-//        Configuration.remote = appConfig.getStringValue("configurationRemote");
-//        Configuration.browser = appConfig.getStringValue("configurationBrowser");
-//        Configuration.timeout = appConfig.getIntValue("configurationTimeout");
-//
-//        String requiredIssuePriority = "critical";
-//    }
+    @Test(enabled = false)
+    public void changeIssuePriorityTest(){
+
+        String requiredIssuePriority = "High";
+        String loginURL = appConfig.getStringValue("jiraURL");
+        String issueURL = appConfig.getStringValue("jiraIssueURL");
+
+        open(loginURL);
+
+        LoginPage loginPage = new LoginPage();
+
+        loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
+        loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
+        loginPage.clickSubmit();
+
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.isLoggedIn();
+
+        open(issueURL);
+
+        IssuePage issuePage = new IssuePage();
+        issuePage.clickPriorityElement();
+        issuePage.enterPriorityText(requiredIssuePriority);
+        issuePage.clickSubmitCommentButton();
+
+    }
 }

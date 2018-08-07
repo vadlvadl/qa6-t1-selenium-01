@@ -14,6 +14,9 @@ public class IssuePage {
     String addCommentSubmitButtonID = "issue-comment-add-submit";
     String issueActionsContainerID = "issue_actions_container";
     String issueActionsTextXPath = "//*[@id=\"issue_actions_container\"]/div/div/div[@class=\"action-body flooded\"]";
+    String priorityElementID = "priority-val";
+    String priorityFieldID = "priority-field";
+    String priorityFormSubmitButtonXPath = "//form[@id='priority-form']/div[@class='save-options']/button[@type='submit']";
 
     public void clickAddCommentButton(){
         $(byId(commentButtonID)).click();
@@ -38,4 +41,18 @@ public class IssuePage {
     public void checkLastCommentText(String text){
         $$(byXpath(issueActionsTextXPath)).last().shouldHave(text(text));
     }
+
+    public void clickPriorityElement(){
+        $(byId(priorityElementID)).click();
+    }
+
+    public void enterPriorityText(String text){
+        $(byId(priorityFieldID)).sendKeys(text);
+        $(byId(priorityFieldID)).pressEnter();
+    }
+
+    public void clickSubmitAtPriorityForm(){
+        $(byXpath(priorityFormSubmitButtonXPath)).click();
+    }
+
 }
