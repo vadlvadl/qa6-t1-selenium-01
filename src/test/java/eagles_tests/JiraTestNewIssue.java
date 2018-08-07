@@ -30,7 +30,7 @@ public class JiraTestNewIssue {
         Configuration.timeout = appConfig.getIntValue("configurationTimeout");
     }
 
-    @Test
+    @Test(enabled = false)
     public void createNewTaskTest(){
 
         String newIssueSummary = "[Test Automation] QAAUTO6-T1_test02";
@@ -42,7 +42,7 @@ public class JiraTestNewIssue {
         open(loginURL);
 
         LoginPage loginPage = new LoginPage();
-
+        loginPage.atLoginPage();
         loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
         loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
         loginPage.clickSubmit();
