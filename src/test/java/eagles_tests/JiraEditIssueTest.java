@@ -1,29 +1,39 @@
+package eagles_tests;
+
 import com.codeborne.selenide.Configuration;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import helpers.PropertyReader;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import pages.IssueDialogPage;
 import pages.IssuePage;
 import pages.LoginPage;
 
 import java.util.Random;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.testng.Assert.assertEquals;
+
 
 public class JiraEditIssueTest {
 
-    @Test
-    public void AddCommentTest(){
+    private PropertyReader appConfig;
+    private PropertyReader credentials;
 
+    @BeforeTest
+    public void initConfiguration(){
+
+        // Get full path to root directory
         String rootPath = System.getProperty("user.dir");
 
-        PropertyReader appConfig = new PropertyReader(rootPath + "/jira.properties");
-        PropertyReader credentials = new PropertyReader(rootPath + "/credentials.properties");
+        appConfig = new PropertyReader(rootPath + "/jira.properties");
+        credentials = new PropertyReader(rootPath + "/credentials.properties");
 
         Configuration.remote = appConfig.getStringValue("configurationRemote");
         Configuration.browser = appConfig.getStringValue("configurationBrowser");
         Configuration.timeout = appConfig.getIntValue("configurationTimeout");
+    }
+
+    @Test
+    public void AddCommentTest(){
 
         Random random = new Random();
         int salt = random.nextInt() + 1;
@@ -58,18 +68,18 @@ public class JiraEditIssueTest {
 
     }
 
-    @Test
-    public void changeIssuePriorityTest(){
-
-        String rootPath = System.getProperty("user.dir");
-
-        PropertyReader appConfig = new PropertyReader(rootPath + "/jira.properties");
-        PropertyReader credentials = new PropertyReader(rootPath + "/credentials.properties");
-
-        Configuration.remote = appConfig.getStringValue("configurationRemote");
-        Configuration.browser = appConfig.getStringValue("configurationBrowser");
-        Configuration.timeout = appConfig.getIntValue("configurationTimeout");
-
-        String requiredIssuePriority = "critical";
-    }
+//    @Test
+//    public void changeIssuePriorityTest(){
+//
+//        String rootPath = System.getProperty("user.dir");
+//
+//        PropertyReader appConfig = new PropertyReader(rootPath + "/jira.properties");
+//        PropertyReader credentials = new PropertyReader(rootPath + "/credentials.properties");
+//
+//        Configuration.remote = appConfig.getStringValue("configurationRemote");
+//        Configuration.browser = appConfig.getStringValue("configurationBrowser");
+//        Configuration.timeout = appConfig.getIntValue("configurationTimeout");
+//
+//        String requiredIssuePriority = "critical";
+//    }
 }

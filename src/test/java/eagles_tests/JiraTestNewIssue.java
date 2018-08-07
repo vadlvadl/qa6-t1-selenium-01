@@ -1,3 +1,5 @@
+package eagles_tests;
+
 import com.codeborne.selenide.Configuration;
 
 import org.testng.annotations.Test;
@@ -14,7 +16,7 @@ public class JiraTestNewIssue {
 
         Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.browser = "chrome";
-        Configuration.timeout = 7000;
+        Configuration.timeout = 10000;
 
         // Run browser and get needed address
         open("http://jira.hillel.it:8080/");
