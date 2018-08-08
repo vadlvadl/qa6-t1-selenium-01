@@ -22,8 +22,8 @@ public class DashboardPage {
         $(byXpath("//*[@id=\"find_link\"] ")).click();
     }
 
-    public void clickCurrentSearchButton() {
-        $(byXpath("  //*[@id=\"jira.top.navigation.bar:issues_drop_current_lnk\"] ")).click();
+    public  void clickSearchForIssuesButton () {
+        $(byId("issues_new_search_link")).click();
     }
 
     public void isLoggedIn(){
