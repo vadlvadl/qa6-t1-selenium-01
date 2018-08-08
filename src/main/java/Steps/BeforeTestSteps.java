@@ -18,8 +18,8 @@ public class BeforeTestSteps {
 
         open(loadProperties.getProjectProperty());
 
-        loginPage.enterUserName(loadProperties.getUserName());
+        loginPage.enterLogin(loadProperties.getUserName());
         loginPage.enterPassword(loadProperties.getPassword());
-        loginPage.clickSubmitButton();
+        loginPage.clickSubmit();
     }
 }
