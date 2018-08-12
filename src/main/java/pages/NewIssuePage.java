@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import org.testng.Assert;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byXpath;

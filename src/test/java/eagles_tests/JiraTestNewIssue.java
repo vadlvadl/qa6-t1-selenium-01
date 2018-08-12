@@ -30,7 +30,7 @@ public class JiraTestNewIssue {
         Configuration.timeout = appConfig.getIntValue("configurationTimeout");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void createNewTaskTest(){
 
         String newIssueSummary = "[Test Automation] QAAUTO6-T1_test02";

@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>3.11.0</selenium.version>
         <selenide.version>4.12.3</selenide.version>
-        <allure.version>2.7.0</allure.version>
+        <allure.version>2.9</allure.version>
         <aspectj.version>1.8.10</aspectj.version>
         <compiler.version>1.7</compiler.version>
     </properties>
@@ -49,6 +49,11 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.version}</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -76,11 +81,7 @@
             <version>1.7.25</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
