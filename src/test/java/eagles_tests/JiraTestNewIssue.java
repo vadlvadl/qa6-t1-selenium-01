@@ -36,19 +36,21 @@ public class JiraTestNewIssue {
         String newIssueSummary = "[Test Automation] QAAUTO6-T1_test02";
         String newIssueDescription = "Testing issue created according to http://jira.hillel.it:8080/browse/QAAUT6-1 task";
 
-        String loginURL = appConfig.getStringValue("jiraURL");
-
-        // Run browser and get needed address
-        open(loginURL);
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.atLoginPage();
-        loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
-        loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
-        loginPage.clickSubmit();
-
         DashboardPage dashboardPage = new DashboardPage();
-        dashboardPage.isLoggedIn();
+        open(appConfig.getStringValue("jiraDashboardURL"));
+
+        if(!dashboardPage.isLoggedIn()){
+            open(appConfig.getStringValue("jiraURL"));
+
+            LoginPage loginPage = new LoginPage();
+            loginPage.atLoginPage();
+            loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
+            loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
+            loginPage.clickSubmit();
+
+            open(appConfig.getStringValue("jiraDashboardURL"));
+        }
+
         dashboardPage.clickCreateIssueButton();
 
         IssueDialogPage issueDialogPage = new IssueDialogPage();
@@ -58,11 +60,6 @@ public class JiraTestNewIssue {
         issueDialogPage.clickAssignToMe();
         issueDialogPage.clickCreateButton();
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
     }
 }

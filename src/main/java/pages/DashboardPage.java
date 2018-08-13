@@ -1,13 +1,11 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class DashboardPage {
 
@@ -26,9 +24,11 @@ public class DashboardPage {
         $(byId("issues_new_search_link")).click();
     }
 
-    public void isLoggedIn(){
-        $(byId(headerAccountDetail)).waitUntil(Condition.visible,10000);
+    public boolean atRequiredPage(String url){
+        return url.equals(url());
     }
 
-
+    public boolean isLoggedIn(){
+        return $(byId(headerAccountDetail)).exists();
+    }
 }
