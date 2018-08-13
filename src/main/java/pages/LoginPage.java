@@ -29,6 +29,6 @@ public class LoginPage {
     }
 
     public void atLoginPage(){
-        $(byId(usernameInputID)).shouldBe(Condition.visible);
+        $(byId(usernameInputID)).waitUntil(Condition.visible,6000);
     }
 }
