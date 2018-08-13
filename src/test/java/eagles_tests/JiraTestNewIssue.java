@@ -1,5 +1,6 @@
 package eagles_tests;
 
+import Steps.InitStep;
 import Steps.LoginStep;
 import com.codeborne.selenide.Configuration;
 
@@ -20,16 +21,9 @@ public class JiraTestNewIssue {
 
     @BeforeTest
     public void initConfiguration(){
-
-        // Get full path to root directory
-        String rootPath = System.getProperty("user.dir");
-
-        appConfig = new PropertyReader(rootPath + "/jira.properties");
-        credentials = new PropertyReader(rootPath + "/credentials.properties");
-
-        Configuration.remote = appConfig.getStringValue("configurationRemote");
-        Configuration.browser = appConfig.getStringValue("configurationBrowser");
-        Configuration.timeout = appConfig.getIntValue("configurationTimeout");
+        InitStep.initConfiguration();
+        appConfig = InitStep.getAppConfig();
+        credentials = InitStep.getCredentials();
     }
 
     @Test
