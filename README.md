@@ -24,5 +24,6 @@ Make sure you have credentials.properties file in root folder of your project wi
 ```
 
 * Run test
-```mvn clean test```
-*
+```mvn clean test site```
+* Look at Allure results
+``` mvn io.qameta.allure:allure-maven:serve ```
