@@ -26,7 +26,7 @@ public class JiraTestNewIssue {
         credentials = InitStep.getCredentials();
     }
 
-    @Test (priority = 1)
+    @Test (priority = 1, enabled = false)
     public void createNewTaskTest(){
 
         String newIssueSummary = "[Test Automation] QAAUTO6-T1_test02";
@@ -47,10 +47,10 @@ public class JiraTestNewIssue {
         IssueDialogPage issueDialogPage = new IssueDialogPage();
 
         issueDialogPage.enterSummary(newIssueSummary);
+        issueDialogPage.clickVisualModeTabButton();
         issueDialogPage.enterDescription(newIssueDescription);
         issueDialogPage.clickAssignToMe();
         issueDialogPage.clickCreateButton();
-
 
     }
 }
