@@ -1,6 +1,7 @@
 package eagles_tests;
 
 import Steps.InitStep;
+import Steps.LoginStep;
 import com.codeborne.selenide.Configuration;
 import helpers.PropertyReader;
 import org.testng.annotations.BeforeTest;
@@ -29,26 +30,23 @@ public class JiraEditIssueTest {
     @Test
     public void AddCommentTest(){
 
-        Random random = new Random();
-        int salt = random.nextInt() + 1;
-
         String comment = "Comment added by autotest";
-        String loginURL = appConfig.getStringValue("jiraURL");
         String issueURL = appConfig.getStringValue("jiraIssueURL");
+        String dashboardURL = appConfig.getStringValue("jiraDashboardURL");
 
         // Add some ID to comment text
+        Random random = new Random();
+        int salt = random.nextInt() + 1;
         comment = "[" + salt + "]" + comment;
 
-        open(loginURL);
-
-        LoginPage loginPage = new LoginPage();
-
-        loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
-        loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
-        loginPage.clickSubmit();
-
         DashboardPage dashboardPage = new DashboardPage();
-        dashboardPage.isLoggedIn();
+        open(dashboardURL);
+
+        if(!dashboardPage.isLoggedIn()){
+
+            LoginStep.login(appConfig,credentials);
+            open(dashboardURL);
+        }
 
         open(issueURL);
 
@@ -66,19 +64,17 @@ public class JiraEditIssueTest {
     public void changeIssuePriorityTest(){
 
         String requiredIssuePriority = "High";
-        String loginURL = appConfig.getStringValue("jiraURL");
+        String dashboardURL = appConfig.getStringValue("jiraDashboardURL");
         String issueURL = appConfig.getStringValue("jiraIssueURL");
 
-        open(loginURL);
-
-        LoginPage loginPage = new LoginPage();
-
-        loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
-        loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
-        loginPage.clickSubmit();
-
         DashboardPage dashboardPage = new DashboardPage();
-        dashboardPage.isLoggedIn();
+        open(dashboardURL);
+
+        if(!dashboardPage.isLoggedIn()){
+
+            LoginStep.login(appConfig,credentials);
+            open(dashboardURL);
+        }
 
         open(issueURL);
 
