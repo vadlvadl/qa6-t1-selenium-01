@@ -5,7 +5,7 @@ public class Credentials {
     private String username;
     private String password;
 
-    public void Credentials(String path){
+    public Credentials(String path){
 
         PropertyReader propertyReader = new PropertyReader(path);
         this.username = propertyReader.getStringValue("username");

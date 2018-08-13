@@ -2,6 +2,7 @@ package eagles_tests;
 
 import helpers.AppConfiguration;
 import Steps.LoginStep;
+import helpers.Credentials;
 import helpers.PropertyReader;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -15,22 +16,21 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class JiraEditIssueTest {
 
-    private PropertyReader appConfig;
-    private PropertyReader credentials;
+    private AppConfiguration appConfig;
+    private Credentials credentials;
 
     @BeforeTest
     public void setUp(){
-        AppConfiguration.initConfiguration();
-        appConfig = AppConfiguration.getAppConfig();
-        credentials = AppConfiguration.getCredentials();
+        appConfig = new AppConfiguration("src/test/resources/jira.properties");
+        credentials = new Credentials("src/test/resources/credentials.properties");
     }
 
     @Test (priority = 3)
     public void AddCommentTest(){
 
         String comment = "Comment added by autotest";
-        String issueURL = appConfig.getStringValue("jiraIssueURL");
-        String dashboardURL = appConfig.getStringValue("jiraDashboardURL");
+        String issueURL = appConfig.get("jiraIssueURL");
+        String dashboardURL = appConfig.get("jiraDashboardURL");
 
         // Add some ID to comment text
         Random random = new Random();
@@ -42,8 +42,9 @@ public class JiraEditIssueTest {
 
         if(!dashboardPage.isLoggedIn()){
 
-            LoginStep.login();
+            LoginStep.login(credentials.getUsername(),credentials.getPassword());
             open(dashboardURL);
+
         }
 
         open(issueURL);
@@ -62,15 +63,15 @@ public class JiraEditIssueTest {
     public void changeIssuePriorityTest(){
 
         String requiredIssuePriority = "High";
-        String dashboardURL = appConfig.getStringValue("jiraDashboardURL");
-        String issueURL = appConfig.getStringValue("jiraIssueURL");
+        String dashboardURL = appConfig.get("jiraDashboardURL");
+        String issueURL = appConfig.get("jiraIssueURL");
 
         DashboardPage dashboardPage = new DashboardPage();
         open(dashboardURL);
 
         if(!dashboardPage.isLoggedIn()){
 
-            LoginStep.login(appConfig,credentials);
+            LoginStep.login(credentials.getUsername(),credentials.getPassword());
             open(dashboardURL);
         }
 

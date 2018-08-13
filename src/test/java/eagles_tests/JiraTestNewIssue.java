@@ -3,6 +3,7 @@ package eagles_tests;
 import helpers.AppConfiguration;
 import Steps.LoginStep;
 
+import helpers.Credentials;
 import helpers.PropertyReader;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -13,14 +14,13 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class JiraTestNewIssue {
 
-    private PropertyReader appConfig;
-    private PropertyReader credentials;
+    private AppConfiguration appConfig;
+    private Credentials credentials;
 
     @BeforeTest
-    public void initConfiguration(){
-        AppConfiguration.initConfiguration();
-        appConfig = AppConfiguration.getAppConfig();
-        credentials = AppConfiguration.getCredentials();
+    public void setUp(){
+        appConfig = new AppConfiguration("src/test/resources/jira.properties");
+        credentials = new Credentials("src/test/resources/credentials.properties");
     }
 
     @Test (priority = 1, enabled = false)
@@ -30,12 +30,12 @@ public class JiraTestNewIssue {
         String newIssueDescription = "Testing issue created according to http://jira.hillel.it:8080/browse/QAAUT6-1 task";
 
         DashboardPage dashboardPage = new DashboardPage();
-        open(appConfig.getStringValue("jiraDashboardURL"));
+        open(appConfig.get("jiraDashboardURL"));
 
         if(!dashboardPage.isLoggedIn()){
 
-            LoginStep.login(appConfig,credentials);
-            open(appConfig.getStringValue("jiraDashboardURL"));
+            LoginStep.login(credentials.getUsername(),credentials.getPassword());
+            open(appConfig.get("jiraDashboardURL"));
 
         }
 

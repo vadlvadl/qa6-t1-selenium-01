@@ -1,14 +1,15 @@
 package helpers;
 
 import com.codeborne.selenide.Configuration;
-import helpers.PropertyReader;
 
 public class AppConfiguration {
 
     private PropertyReader appConfig;
 
-    public void loadFromFile(String path){
+    public AppConfiguration(String path){
         this.appConfig =  new PropertyReader(path);
+
+        this.configure();
     }
 
     public void configure(){
@@ -19,6 +20,8 @@ public class AppConfiguration {
 
     }
 
-
+    public String get(String key){
+        return appConfig.getStringValue(key);
+    }
 
 }
