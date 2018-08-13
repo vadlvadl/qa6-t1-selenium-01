@@ -6,13 +6,20 @@ import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class LoginPage {
 
+    String loginURL = "http://jira.hillel.it:8080/login.jsp";
     String usernameInputID = "login-form-username";
     String passwordInputID = "login-form-password";
-//    String loginButtonID = "login-form-submit";  // Entry point "http://jira.hillel.it:8080/login.jsp"
-    String loginButtonID = "login"; // Entry point "http://jira.hillel.it:8080/secure/Dashboard.jspa"
+    String loginButtonID = "login-form-submit";  // Entry point "http://jira.hillel.it:8080/login.jsp"
+//    String loginButtonID = "login"; // Entry point "http://jira.hillel.it:8080/secure/Dashboard.jspa"
+
+    public void navigate(){
+        open(loginURL);
+    }
 
     public void enterLogin(String username) {
         $(By.id(usernameInputID)).clear();
@@ -29,6 +36,7 @@ public class LoginPage {
     }
 
     public void atLoginPage(){
-        $(byId(usernameInputID)).waitUntil(Condition.visible,6000);
+        url().equalsIgnoreCase(loginURL);
+        $(byId(usernameInputID)).should(Condition.exist);
     }
 }
