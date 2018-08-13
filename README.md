@@ -17,7 +17,7 @@ java -jar selenium-server-standalone-3.13.0.jar -role hub
 java -jar selenium-server-standalone-3.13.0.jar -role node
 ```
 
-Make sure you have credentials.properties file in root folder of your project with content
+Make sure you have credentials.properties file in src/test/resources/ folder of your project with content
 ```
    jiraLogin=...
    jiraPassword=...
