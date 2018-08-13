@@ -3,7 +3,7 @@ package Steps;
 import com.codeborne.selenide.Configuration;
 import helpers.PropertyReader;
 
-public class InitStep {
+public class InitialConfiguration {
 
     public static void initConfiguration(){
 

@@ -1,14 +1,12 @@
 package eagles_tests;
 
-import Steps.InitStep;
+import Steps.InitialConfiguration;
 import Steps.LoginStep;
-import com.codeborne.selenide.Configuration;
 import helpers.PropertyReader;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.IssuePage;
-import pages.LoginPage;
 
 import java.util.Random;
 
@@ -21,10 +19,10 @@ public class JiraEditIssueTest {
     private PropertyReader credentials;
 
     @BeforeTest
-    public void initConfiguration(){
-        InitStep.initConfiguration();
-        appConfig = InitStep.getAppConfig();
-        credentials = InitStep.getCredentials();
+    public void setUp(){
+        InitialConfiguration.initConfiguration();
+        appConfig = InitialConfiguration.getAppConfig();
+        credentials = InitialConfiguration.getCredentials();
     }
 
     @Test (priority = 3)
@@ -44,7 +42,7 @@ public class JiraEditIssueTest {
 
         if(!dashboardPage.isLoggedIn()){
 
-            LoginStep.login(appConfig,credentials);
+            LoginStep.login();
             open(dashboardURL);
         }
 

@@ -1,16 +1,13 @@
 package eagles_tests;
 
-import Steps.InitStep;
+import Steps.InitialConfiguration;
 import Steps.LoginStep;
-import com.codeborne.selenide.Configuration;
 
 import helpers.PropertyReader;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.IssueDialogPage;
-import pages.LoginPage;
-import sun.rmi.runtime.Log;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -21,9 +18,9 @@ public class JiraTestNewIssue {
 
     @BeforeTest
     public void initConfiguration(){
-        InitStep.initConfiguration();
-        appConfig = InitStep.getAppConfig();
-        credentials = InitStep.getCredentials();
+        InitialConfiguration.initConfiguration();
+        appConfig = InitialConfiguration.getAppConfig();
+        credentials = InitialConfiguration.getCredentials();
     }
 
     @Test (priority = 1, enabled = false)
