@@ -13,8 +13,8 @@ public class InitStep {
         // Get full path to root directory
         String rootPath = System.getProperty("user.dir");
 
-        appConfig = new PropertyReader(rootPath + "/jira.properties");
-        credentials = new PropertyReader(rootPath + "/credentials.properties");
+        appConfig = new PropertyReader(rootPath + "/src/test/resources/jira.properties");
+        credentials = new PropertyReader(rootPath + "/src/test/resources/credentials.properties");
 
         Configuration.remote = appConfig.getStringValue("configurationRemote");
         Configuration.browser = appConfig.getStringValue("configurationBrowser");
