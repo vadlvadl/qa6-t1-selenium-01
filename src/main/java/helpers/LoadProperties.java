@@ -24,7 +24,7 @@ public class LoadProperties {
         Properties prop = new Properties();
         InputStream input = null;
         try {
-            input = new FileInputStream("jira.properties");
+            input = new FileInputStream("src/test/resources/jira.properties");
             // load a property file
             prop.load(input);
             // get the property value
