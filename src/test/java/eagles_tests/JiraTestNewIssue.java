@@ -1,5 +1,6 @@
 package eagles_tests;
 
+import Steps.LoginStep;
 import com.codeborne.selenide.Configuration;
 
 import helpers.PropertyReader;
@@ -8,6 +9,7 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.IssueDialogPage;
 import pages.LoginPage;
+import sun.rmi.runtime.Log;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -30,7 +32,7 @@ public class JiraTestNewIssue {
         Configuration.timeout = appConfig.getIntValue("configurationTimeout");
     }
 
-    @Test(enabled = true)
+    @Test
     public void createNewTaskTest(){
 
         String newIssueSummary = "[Test Automation] QAAUTO6-T1_test02";
@@ -40,15 +42,10 @@ public class JiraTestNewIssue {
         open(appConfig.getStringValue("jiraDashboardURL"));
 
         if(!dashboardPage.isLoggedIn()){
-            open(appConfig.getStringValue("jiraURL"));
 
-            LoginPage loginPage = new LoginPage();
-            loginPage.atLoginPage();
-            loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
-            loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
-            loginPage.clickSubmit();
-
+            LoginStep.login(appConfig,credentials);
             open(appConfig.getStringValue("jiraDashboardURL"));
+
         }
 
         dashboardPage.clickCreateIssueButton();
