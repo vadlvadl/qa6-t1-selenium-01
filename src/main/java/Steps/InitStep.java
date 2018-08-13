@@ -5,19 +5,21 @@ import helpers.PropertyReader;
 
 public class InitStep {
 
-    private PropertyReader appConfig;
-    private PropertyReader credentials;
+    public static void initConfiguration(){
 
-    public void initConfiguration(){
-
-        // Get full path to root directory
-        String rootPath = System.getProperty("user.dir");
-
-        appConfig = new PropertyReader(rootPath + "/src/test/resources/jira.properties");
-        credentials = new PropertyReader(rootPath + "/src/test/resources/credentials.properties");
+        PropertyReader appConfig = new PropertyReader(System.getProperty("user.dir") + "/src/test/resources/jira.properties");
 
         Configuration.remote = appConfig.getStringValue("configurationRemote");
         Configuration.browser = appConfig.getStringValue("configurationBrowser");
         Configuration.timeout = appConfig.getIntValue("configurationTimeout");
+
+    }
+
+    public static PropertyReader getAppConfig(){
+        return new PropertyReader(System.getProperty("user.dir") + "/src/test/resources/jira.properties");
+    }
+
+    public static PropertyReader getCredentials(){
+        return new PropertyReader(System.getProperty("user.dir") + "/src/test/resources/credentials.properties");
     }
 }
