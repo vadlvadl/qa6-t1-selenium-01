@@ -26,7 +26,7 @@ public class JiraTestNewIssue {
         credentials = InitStep.getCredentials();
     }
 
-    @Test
+    @Test (priority = 1)
     public void createNewTaskTest(){
 
         String newIssueSummary = "[Test Automation] QAAUTO6-T1_test02";

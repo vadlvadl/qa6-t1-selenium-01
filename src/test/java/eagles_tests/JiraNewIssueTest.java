@@ -25,7 +25,7 @@ public class JiraNewIssueTest {
 
 
 
-    @Test
+    @Test (priority = 2)
 
     public void CreateIssueTest () {
 

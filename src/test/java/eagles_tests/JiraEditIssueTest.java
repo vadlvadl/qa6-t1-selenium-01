@@ -27,7 +27,7 @@ public class JiraEditIssueTest {
         credentials = InitStep.getCredentials();
     }
 
-    @Test
+    @Test (priority = 3)
     public void AddCommentTest(){
 
         String comment = "Comment added by autotest";

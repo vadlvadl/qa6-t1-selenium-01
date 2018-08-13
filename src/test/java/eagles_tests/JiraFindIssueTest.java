@@ -25,7 +25,7 @@ public class JiraFindIssueTest {
         searchPage=new SearchPage();
         beforeTestSteps.setupAndLogin();
     }
-    @Test
+    @Test (priority = 4)
     public  void findCreatedIssueTest (){
         String summary ="[Test Automation] QAAUTO6-T1_test02";
         String issueType ="Task";
