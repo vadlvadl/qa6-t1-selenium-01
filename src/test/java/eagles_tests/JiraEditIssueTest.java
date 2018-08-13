@@ -29,8 +29,6 @@ public class JiraEditIssueTest {
     public void AddCommentTest(){
 
         String comment = "Comment added by autotest";
-        String issueURL = appConfig.get("jiraIssueURL");
-        String dashboardURL = appConfig.get("jiraDashboardURL");
 
         // Add some ID to comment text
         Random random = new Random();
@@ -38,18 +36,14 @@ public class JiraEditIssueTest {
         comment = "[" + salt + "]" + comment;
 
         DashboardPage dashboardPage = new DashboardPage();
-        open(dashboardURL);
+        dashboardPage.navigate();
 
         if(!dashboardPage.isLoggedIn()){
-
             LoginStep.login(credentials.getUsername(),credentials.getPassword());
-            open(dashboardURL);
-
         }
 
-        open(issueURL);
-
         IssuePage issuePage = new IssuePage();
+        issuePage.navigateTo(appConfig.get("jiraIssueURL"));
         issuePage.clickAddCommentButton();
         issuePage.clickTextareaTabButton();
         issuePage.enterTextToTextarea(comment);
@@ -63,21 +57,16 @@ public class JiraEditIssueTest {
     public void changeIssuePriorityTest(){
 
         String requiredIssuePriority = "High";
-        String dashboardURL = appConfig.get("jiraDashboardURL");
-        String issueURL = appConfig.get("jiraIssueURL");
 
         DashboardPage dashboardPage = new DashboardPage();
-        open(dashboardURL);
+        dashboardPage.navigate();
 
         if(!dashboardPage.isLoggedIn()){
-
             LoginStep.login(credentials.getUsername(),credentials.getPassword());
-            open(dashboardURL);
         }
 
-        open(issueURL);
-
         IssuePage issuePage = new IssuePage();
+        issuePage.navigateTo(appConfig.get("jiraIssueURL"));
         issuePage.clickPriorityElement();
         issuePage.enterPriorityText(requiredIssuePriority);
         issuePage.clickSubmitCommentButton();
