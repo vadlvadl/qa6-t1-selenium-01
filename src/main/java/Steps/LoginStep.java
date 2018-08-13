@@ -1,20 +1,18 @@
 package Steps;
 
-import helpers.PropertyReader;
 import pages.LoginPage;
-
-import static com.codeborne.selenide.Selenide.open;
 
 
 public class LoginStep {
 
-    public static void login(PropertyReader appConfig, PropertyReader credentials){
-        open(appConfig.getStringValue("jiraURL"));
+    public static void login(String username, String password){
 
         LoginPage loginPage = new LoginPage();
+        loginPage.navigate();
         loginPage.atLoginPage();
-        loginPage.enterLogin(credentials.getStringValue("jiraLogin",appConfig.getStringValue("jiraLogin")));
-        loginPage.enterPassword(credentials.getStringValue("jiraPassword",appConfig.getStringValue("jiraPassword")));
+        loginPage.enterLogin(username);
+        loginPage.enterPassword(password);
         loginPage.clickSubmit();
+
     }
 }
