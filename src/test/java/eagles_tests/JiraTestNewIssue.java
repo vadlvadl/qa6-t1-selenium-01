@@ -1,6 +1,6 @@
 package eagles_tests;
 
-import Steps.InitialConfiguration;
+import helpers.AppConfiguration;
 import Steps.LoginStep;
 
 import helpers.PropertyReader;
@@ -18,9 +18,9 @@ public class JiraTestNewIssue {
 
     @BeforeTest
     public void initConfiguration(){
-        InitialConfiguration.initConfiguration();
-        appConfig = InitialConfiguration.getAppConfig();
-        credentials = InitialConfiguration.getCredentials();
+        AppConfiguration.initConfiguration();
+        appConfig = AppConfiguration.getAppConfig();
+        credentials = AppConfiguration.getCredentials();
     }
 
     @Test (priority = 1, enabled = false)
