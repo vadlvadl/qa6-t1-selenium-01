@@ -10,7 +10,8 @@ public class NewIssuePage {
     private String inputProjectXpath = "//*[@id=\"project-field\"]";
     private String inputIssueTypeXpath = "//*[@id=\"issuetype-field\"]";
     private String inputSummaryXpath = "//*[@id=\"summary\"]";
-    private String inputDescriptionID = "description"; //"tinymce";
+    private String inputDescriptionID = "description";
+    private String clickTextButtonXpath = "//*[@class=\"tabs-menu\"]/li[2]";
     private String assignToMeButtonXpath = "//*[@id=\"assign-to-me-trigger\"]";
     private String createButtonXpath = "//*[@id=\"create-issue-submit\"]";
     //этот селектор нужен был для iframe
@@ -39,6 +40,7 @@ public class NewIssuePage {
     // Это снячало был iframe, потом они его изменили...
     public  void enterDescription(String description){
            //Selenide.switchTo().frame($(byXpath(frameXpath)));
+            $(byXpath(clickTextButtonXpath)).click();
            $(byId(inputDescriptionID)).clear();
            $(byId(inputDescriptionID)).sendKeys(description);
            //Selenide.switchTo().defaultContent();
@@ -57,3 +59,4 @@ public class NewIssuePage {
     }
 
 }
+
