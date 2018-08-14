@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class IssuePage {
 
@@ -17,6 +18,10 @@ public class IssuePage {
     String priorityElementID = "priority-val";
     String priorityFieldID = "priority-field";
     String priorityFormSubmitButtonXPath = "//form[@id='priority-form']/div[@class='save-options']/button[@type='submit']";
+
+    public void navigateTo(String url){
+        open(url);
+    }
 
     public void clickAddCommentButton(){
         $(byId(commentButtonID)).click();

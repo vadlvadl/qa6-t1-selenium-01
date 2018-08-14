@@ -17,7 +17,7 @@ public class BeforeTestSteps {
         Configuration.timeout = 9000;
 
         open(loadProperties.getProjectProperty());
-
+        loginPage.atLoginPage();
         loginPage.enterLogin(loadProperties.getUserName());
         loginPage.enterPassword(loadProperties.getPassword());
         loginPage.clickSubmit();
