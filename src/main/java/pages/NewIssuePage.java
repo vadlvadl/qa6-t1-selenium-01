@@ -7,56 +7,41 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class NewIssuePage {
-    private String inputProjectXpath = "//*[@id=\"project-field\"]";
-    private String inputIssueTypeXpath = "//*[@id=\"issuetype-field\"]";
-    private String inputSummaryXpath = "//*[@id=\"summary\"]";
+    private String inputProjectID = "project-field";
+    private String inputIssueTypeID = "issuetype-field";
+    private String inputSummaryID = "summary";
     private String inputDescriptionID = "description";
-    private String clickTextButtonXpath = "//*[@class=\"tabs-menu\"]/li[2]";
-    private String assignToMeButtonXpath = "//*[@id=\"assign-to-me-trigger\"]";
-    private String createButtonXpath = "//*[@id=\"create-issue-submit\"]";
-    //этот селектор нужен был для iframe
-   // private String frameXpath = "//[@class=\"mce-edit-area mce-container mce-panel mce-stack-layout-item mce-first\"]/iframe ";
+    private String clickTextTabButtonXpath = "//*[@class=\"tabs-menu\"]/li[2]";
+    private String assignToMeButtonID = "assign-to-me-trigger";
+    private String createButtonID = "create-issue-submit";
 
     public boolean atRequiredPage () {
         $(byXpath("//*[@id=\"create-issue-dialog\"]/div[1]/h2")).should(Condition.visible);
         return true;
     }
     public  void enterProjectName(String projectName){
-        $(byXpath(inputProjectXpath)).sendKeys(projectName);
-        $(byXpath(inputProjectXpath)).pressEnter();
+        $(byId(inputProjectID)).setValue(projectName).pressEnter();
     }
     public  void enterIssueType(String issueType){
-        $(byXpath(inputIssueTypeXpath)).sendKeys(issueType);
-        $(byXpath(inputIssueTypeXpath)).pressEnter();
+        $(byId(inputIssueTypeID)).setValue(issueType).pressEnter();
     }
-
     public  void enterSummary(String summary){
-        $(byXpath(inputSummaryXpath)).clear();
-        $(byXpath(inputSummaryXpath)).sendKeys(summary);
-
-
-        }
-
-    // Это снячало был iframe, потом они его изменили...
+        $(byId(inputSummaryID)).clear();
+        $(byId(inputSummaryID)).setValue(summary);
+    }
     public  void enterDescription(String description){
-           //Selenide.switchTo().frame($(byXpath(frameXpath)));
-            $(byXpath(clickTextButtonXpath)).click();
-           $(byId(inputDescriptionID)).clear();
-           $(byId(inputDescriptionID)).sendKeys(description);
-           //Selenide.switchTo().defaultContent();
+        $(byXpath(clickTextTabButtonXpath)).click();
+        $(byId(inputDescriptionID)).clear();
+        $(byId(inputDescriptionID)).setValue(description);
     }
     public void clickAssignToMe(){
-        $(byXpath(assignToMeButtonXpath)).click();
+        $(byId(assignToMeButtonID)).click();
     }
     public void clickCreateButton(){
-        $(byXpath(createButtonXpath)).click();
+        $(byId(createButtonID)).click();
     }
     public boolean isIssueCreated () {
         $(byXpath("//*[@id=\"create-issue-dialog\"]/div[1]/h2")).shouldNot(Condition.visible); // проверяет, что после нажатия кнопки, окно закрылось.
-        // или можно через
-        //Assert.assertFalse($(byXpath("//*[@id=\"create-issue-dialog\"]/div[1]/h2")).isDisplayed(),"some of mandatory fields is empty");
-        return true;
+         return true;
     }
-
 }
-
