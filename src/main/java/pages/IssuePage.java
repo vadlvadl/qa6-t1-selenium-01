@@ -11,10 +11,10 @@ public class IssuePage {
 
     String commentButtonID = "footer-comment-button";
     String textTabButtonID = "aui-uid-1";
-    String commentTextAreaXPath = "//*[@id=\"comment-wiki-edit\"]/textarea";
+    String commentTextAreaXPath = "//*[@id='comment-wiki-edit']/textarea";
     String addCommentSubmitButtonID = "issue-comment-add-submit";
     String issueActionsContainerID = "issue_actions_container";
-    String issueActionsTextXPath = "//*[@id=\"issue_actions_container\"]/div/div/div[@class=\"action-body flooded\"]";
+    String issueActionsTextXPath = "//*[@id='issue_actions_container']/div/div/div[@class='action-body flooded']";
     String priorityElementID = "priority-val";
     String priorityFieldID = "priority-field";
     String priorityFormSubmitButtonXPath = "//form[@id='priority-form']/div[@class='save-options']/button[@type='submit']";
