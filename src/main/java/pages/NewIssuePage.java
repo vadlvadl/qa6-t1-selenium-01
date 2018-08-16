@@ -7,41 +7,56 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class NewIssuePage {
-    private String inputProjectID = "project-field";
-    private String inputIssueTypeID = "issuetype-field";
-    private String inputSummaryID = "summary";
+    private String inputProjectXpath = "//*[@id=\"project-field\"]";
+    private String inputIssueTypeXpath = "//*[@id=\"issuetype-field\"]";
+    private String inputSummaryXpath = "//*[@id=\"summary\"]";
     private String inputDescriptionID = "description";
-    private String clickTextTabButtonXpath = "//*[@class=\"tabs-menu\"]/li[2]";
-    private String assignToMeButtonID = "assign-to-me-trigger";
-    private String createButtonID = "create-issue-submit";
+    private String TextTabButtonXpath = "//*[@class=\"tabs-menu\"]/li[2]";
+    private String assignToMeButtonXpath = "//*[@id=\"assign-to-me-trigger\"]";
+    private String createButtonXpath = "//*[@id=\"create-issue-submit\"]";
+    //этот селектор нужен был для iframe
+   // private String frameXpath = "//[@class=\"mce-edit-area mce-container mce-panel mce-stack-layout-item mce-first\"]/iframe ";
 
     public boolean atRequiredPage () {
         $(byXpath("//*[@id=\"create-issue-dialog\"]/div[1]/h2")).should(Condition.visible);
         return true;
     }
     public  void enterProjectName(String projectName){
-        $(byId(inputProjectID)).setValue(projectName).pressEnter();
+        $(byXpath(inputProjectXpath)).sendKeys(projectName);
+        $(byXpath(inputProjectXpath)).pressEnter();
     }
     public  void enterIssueType(String issueType){
-        $(byId(inputIssueTypeID)).setValue(issueType).pressEnter();
+        $(byXpath(inputIssueTypeXpath)).sendKeys(issueType);
+        $(byXpath(inputIssueTypeXpath)).pressEnter();
     }
+
     public  void enterSummary(String summary){
-        $(byId(inputSummaryID)).clear();
-        $(byId(inputSummaryID)).setValue(summary);
-    }
+        $(byXpath(inputSummaryXpath)).clear();
+        $(byXpath(inputSummaryXpath)).sendKeys(summary);
+
+
+        }
+
+    
     public  void enterDescription(String description){
-        $(byXpath(clickTextTabButtonXpath)).click();
-        $(byId(inputDescriptionID)).clear();
-        $(byId(inputDescriptionID)).setValue(description);
+           
+            $(byXpath(TextTabButtonXpath)).click();
+           $(byId(inputDescriptionID)).clear();
+           $(byId(inputDescriptionID)).sendKeys(description);
+           
     }
     public void clickAssignToMe(){
-        $(byId(assignToMeButtonID)).click();
+        $(byXpath(assignToMeButtonXpath)).click();
     }
     public void clickCreateButton(){
-        $(byId(createButtonID)).click();
+        $(byXpath(createButtonXpath)).click();
     }
     public boolean isIssueCreated () {
         $(byXpath("//*[@id=\"create-issue-dialog\"]/div[1]/h2")).shouldNot(Condition.visible); // проверяет, что после нажатия кнопки, окно закрылось.
-         return true;
+        // или можно через
+        //Assert.assertFalse($(byXpath("//*[@id=\"create-issue-dialog\"]/div[1]/h2")).isDisplayed(),"some of mandatory fields is empty");
+        return true;
     }
+
 }
+
