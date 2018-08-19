@@ -47,8 +47,20 @@ public class IssuePage {
         $$(byXpath(issueActionsTextXPath)).last().shouldHave(text(text));
     }
 
+    public void clickMenuMoreButton(){
+        $(byId("opsbar-operations_more")).click();
+    }
+
     public void clickPriorityElement(){
         $(byId(priorityElementID)).click();
+    }
+
+    public void clickDeleteIssue(){
+        $(byId("delete-issue")).click();
+    }
+
+    public void confirmDeleteIssue(){
+        $(byId("delete-issue-submit")).click();
     }
 
     public void enterPriorityText(String text){
