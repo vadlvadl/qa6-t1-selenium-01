@@ -2,7 +2,7 @@ package eagles_tests;
 
 import Steps.BeforeTestSteps;
 import com.codeborne.selenide.Condition;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.SearchPage;
@@ -18,16 +18,15 @@ public class JiraFindIssueTest {
     public  static SearchPage searchPage;
     public  static BeforeTestSteps beforeTestSteps;
 
-    @BeforeTest
+    @BeforeMethod
     public void setupBeforeTest () {
         beforeTestSteps =new BeforeTestSteps();
         dashboardPage = new DashboardPage();
         searchPage=new SearchPage();
         beforeTestSteps.setupAndLogin();
     }
-    @Test (priority = 4)
+    @Test (priority = 4, enabled = false)
     public  void findCreatedIssueTest (){
-        String summary ="[Test Automation] QAAUTO6-T1_test02";
         String issueType ="Task";
         String summaryOfSearchedTask ="Test Automation QAAUTO6-T1_test02";
         String jqlRequestForSearching = "project = QAAUT6 AND assignee = currentUser() AND  summary ~ \"\\\\["+summaryOfSearchedTask+"\\\\]\"AND type ="+issueType+" ORDER BY createdDate DESC";
@@ -35,6 +34,7 @@ public class JiraFindIssueTest {
 
         dashboardPage.clickIssueButton();
         dashboardPage.clickSearchForIssuesButton();
+        searchPage.atRequiredPage();
         searchPage.clickAdvancedButton();
         searchPage.fillJQLField(jqlRequestForSearching);
         searchPage.clickSearchButton();

@@ -31,7 +31,7 @@ public class JiraEditIssueTest {
         credentials = new Credentials("src/test/resources/credentials.properties");
     }
 
-    @Test (priority = 3)
+    @Test (priority = 3, enabled = false)
     public void AddCommentTest(){
 
         String comment = "Comment added by autotest";
