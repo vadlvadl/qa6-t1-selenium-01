@@ -1,16 +1,19 @@
 package eagles_tests;
 
+import com.codeborne.selenide.WebDriverRunner;
 import helpers.AppConfiguration;
 import Steps.LoginStep;
 
 import helpers.Credentials;
 import helpers.PropertyReader;
+import org.openqa.selenium.Cookie;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.IssueDialogPage;
 
 import static com.codeborne.selenide.Selenide.open;
+
 
 public class JiraTestNewIssue {
 
@@ -19,6 +22,9 @@ public class JiraTestNewIssue {
 
     @BeforeTest
     public void setUp(){
+        Cookie ck = new Cookie("JSESSIONID","1600C1AE257ED614D4F018A3F367D996");
+        WebDriverRunner.getWebDriver().manage().addCookie(ck);
+
         appConfig = new AppConfiguration("src/test/resources/jira.properties");
         credentials = new Credentials("src/test/resources/credentials.properties");
     }
